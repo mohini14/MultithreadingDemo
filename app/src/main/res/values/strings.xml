@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">MultithreadingDemo</string>
+
+    <string-array name = "url">
+        <item> Image1 </item>
+        <item> Image2 </item>
+        <item> Image3 </item>
+        <item> Image4 </item>
+        <item> Image5 </item>
+        <item> Image6 </item>
+        <item> Image7 </item>
+    </string-array>
+
+    <string-array name="imageURLs">
+        <item>https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPy7ZnI46zizXRVoXLbV4Gl6LamFU6g5pqtJj1ijxnO8i-gJWp</item>
+        <item>https://camo.mybb.com/e01de90be6012adc1b1701dba899491a9348ae79/687474703a2f2f7777772e6a71756572797363726970742e6e65742f696d616765732f53696d706c6573742d526573706f6e736976652d6a51756572792d496d6167652d4c69676874626f782d506c7567696e2d73696d706c652d6c69676874626f782e6a7067</item>
+        <item>http://www.gettyimages.ca/gi-resources/images/Homepage/Hero/UK/CMS_Creative_164657191_Kingfisher.jpg</item>
+        <item>https://www.w3schools.com/w3css/img_lights.jpg</item>
+        <item>https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwswZVnaDs2Sn9AyTVbEhdfGc3cCr3tbh_tiytTGd_cJf1d8_a</item>
+        <item>http://cdn.newmediaretailer.com/1/assets/v1/318000/318490/web_correctingyourdogfromliftinghisleg.jpg</item>
+    </string-array>
+
+
+</resources>
