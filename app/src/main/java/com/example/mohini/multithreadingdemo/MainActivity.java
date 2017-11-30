@@ -57,8 +57,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 //        Uri uriOfURL = Uri.parse(url);
 //        MessagePrinting.displayToast(this, uriOfURL.getLastPathSegment());
 
-        Thread myThread = new Thread(new MyThread());
-        myThread.start();
+        if(etUrlText.getText().toString().length() > 0) {
+            Thread myThread = new Thread(new MyThread(etUrlText.getText().toString()));
+            myThread.start();
+        }
     }
 
     public boolean downloadImageUsingThread(String urlString){
@@ -106,6 +108,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         }
         finally {
+
+            this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    loadingMessageSection.setVisibility(View.GONE);
+                    etUrlText.setText("");
+                }
+            });
             if(connection != null){
                 connection.disconnect();
             }
@@ -142,10 +152,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private class MyThread implements Runnable{
 
+        String urlToBeDownloaded;
+        MyThread(String url){
+            urlToBeDownloaded = url;
+        }
+
         @Override
         public void run(){
-
-            downloadImageUsingThread(listOfImages[0]);
+            MainActivity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    loadingMessageSection.setVisibility(View.VISIBLE);
+                }
+            });
+            downloadImageUsingThread(urlToBeDownloaded);
 
         }
     }

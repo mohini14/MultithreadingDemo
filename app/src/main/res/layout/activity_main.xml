@@ -16,7 +16,7 @@
         android:background="@android:color/white"
         android:focusable="false"
         android:padding="20dp"
-        android:hint="the selected URLs will appear here!!"
+        android:hint="the selected image URLs will appear here!!"
         style="?android:attr/textAppearanceListItemSmall"></EditText>
 
     <Button
@@ -62,7 +62,7 @@
         android:layout_alignLeft="@id/downloadButton"
         android:layout_below="@+id/loadingMessageSection"
         android:layout_marginTop="20dp"
-        android:entries="@array/imageURLs"
+        android:entries="@array/url"
        ></ListView>
 
 </RelativeLayout>
