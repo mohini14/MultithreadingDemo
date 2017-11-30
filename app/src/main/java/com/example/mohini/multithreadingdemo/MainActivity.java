@@ -72,6 +72,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         try {
             url = new URL(urlString);
+
+            // open connection
             connection = (HttpURLConnection)url.openConnection();
             inputStream = connection.getInputStream();
 
@@ -79,21 +81,28 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             byte buffer[] = new byte[1024]; // will read these many bites in one go
 
 
-            // create file
+            // create file to save image
 
-            file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath() + "/" + Uri.parse(urlString).getLastPathSegment());
-            MessagePrinting.displayToast(this,"" +  file.getAbsolutePath());
+            file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath() + "/multithreading_" + Math.random() + ".jpg" );
+
+            boolean f = file.createNewFile();
+                MessagePrinting.logMessage("------------PATH---------------" +  file.getAbsolutePath());
+            outputStream = new FileOutputStream(file);
+
 
             // reading bytes
             while((read = inputStream.read(buffer)) != -1){
 
                 MessagePrinting.logMessage("read = " + read);
 
+                outputStream.write(buffer, 0, read);
+
             }
-        }
-        catch (MalformedURLException e){
-        }
-        catch (IOException e){
+
+            suucees = true;
+        } catch (IOException e){
+
+            e.printStackTrace();
 
         }
         finally {
@@ -110,6 +119,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                 }
             }
+
+            if(outputStream != null){
+
+                try{
+                    outputStream.close();
+                }catch (IOException e){
+                    // todo
+                }
+            }
         }
 
         return suucees;
@@ -118,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        etUrlText.setText(listOfImages[0]);
+        etUrlText.setText(listOfImages[position]);
     }
 
 
